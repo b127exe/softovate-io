@@ -66,9 +66,9 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_CONTENTFUL_SPACE_ID=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}" > .env.production
           echo "NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}" >> .env.production
+          echo "NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN }}" >> .env.production
           echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=master" >> .env.production
-          # Verify the file was created
-          ls -la
+          # Verify the file was created with all variables
           cat .env.production
 
       - name: Build with Next.js
