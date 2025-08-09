@@ -62,12 +62,14 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Create .env file
+      - name: Create .env.production
         run: |
-          echo "NEXT_PUBLIC_CONTENTFUL_SPACE_ID=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}" > .env
-          echo "NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}" >> .env
-          echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master' }}" >> .env
-          cat .env # For debugging (remove in production)
+          echo "NEXT_PUBLIC_CONTENTFUL_SPACE_ID=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}" > .env.production
+          echo "NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}" >> .env.production
+          echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=master" >> .env.production
+          # Verify the file was created
+          ls -la
+          cat .env.production
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build

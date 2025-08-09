@@ -1,6 +1,18 @@
 import { createClient } from "contentful";
 import { createClient as createManagementClient } from "contentful-management";
 
+if (!process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID) {
+  throw new Error('NEXT_PUBLIC_CONTENTFUL_SPACE_ID is missing');
+}
+
+if (!process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN) {
+  throw new Error('NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN is missing');
+}
+
+if (!process.env.NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN) {
+  throw new Error('NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN is missing');
+}
+
 const client = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
