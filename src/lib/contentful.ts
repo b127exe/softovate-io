@@ -2,8 +2,8 @@ import { createClient } from "contentful";
 import { createClient as createManagementClient } from "contentful-management";
 
 const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
+  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
   environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
 });
 
@@ -11,17 +11,44 @@ const managementClient = createManagementClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN!,
 });
 
+// export async function getProjects() {
+//   const res = await client.getEntries({ content_type: "project" });
+//   return res.items.map((item) => ({
+//     id: item.sys.id,
+//     company: item.fields.company,
+//     year: item.fields.year,
+//     title: item.fields.title,
+//     results: item.fields.results.map((result) => ({ title: result })),
+//     link: item.fields.link,
+//     image: item.fields.image.fields.file,
+//   }));
+// }
+
 export async function getProjects() {
-  const res = await client.getEntries({ content_type: "project" });
-  return res.items.map((item) => ({
-    id: item.sys.id,
-    company: item.fields.company,
-    year: item.fields.year,
-    title: item.fields.title,
-    results: item.fields.results.map((result) => ({ title: result })),
-    link: item.fields.link,
-    image: item.fields.image.fields.file,
-  }));
+  try {
+    const res = await client.getEntries({ content_type: "project" });
+    
+    return res.items.map((item) => {
+      // Safely extract fields with defaults
+      const fields = item.fields || {};
+      const imageFile = fields.image?.fields?.file || {};
+      
+      return {
+        id: item.sys.id,
+        company: fields.company || 'Unknown Company',
+        year: fields.year || 'Unknown Year',
+        title: fields.title || 'Untitled Project',
+        results: (fields.results || []).map((result: string) => ({ 
+          title: result || 'No description' 
+        })),
+        link: fields.link || '#',
+        image: imageFile
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching projects from Contentful:', error);
+    return [];
+  }
 }
 
 export async function uploadFile(file: File) {

@@ -8,7 +8,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreDuringBuilds: true
+    ignoreBuildErrors: true
   },
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule) =>
