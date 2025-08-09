@@ -1,9 +1,6 @@
 "use client";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/card";
-import StarIcon from "@/assets/icons/star.svg";
-import bookImage from "@/assets/images/book-cover.png";
-import Image from "next/image";
 import JavascriptIcon from "@/assets/icons/square-js.svg";
 import HTMLIcon from "@/assets/icons/html5.svg";
 import CssIcon from "@/assets/icons/css3.svg";
@@ -12,159 +9,125 @@ import ChromeIcon from "@/assets/icons/chrome.svg";
 import GithubIcon from "@/assets/icons/github.svg";
 import tailwindIcon from "@/assets/icons/tailwind-css.svg";
 import nextIcon from "@/assets/icons/nextjs.svg";
-import { TechIcon } from "@/components/TechIcon";
-import mapImage from "@/assets/images/map.png";
-import smileMemo from "@/assets/images/memoji-smile.png";
+import laravelIcon from "@/assets/icons/laravel-svgrepo-com.svg";
+import figmaIcon from "@/assets/icons/figma-svgrepo-com.svg";
+import mySqlIcon from "@/assets/icons/mysql-svgrepo-com.svg";
+import mongodbIcon from "@/assets/icons/mongodb-svgrepo-com.svg";
 import { CardHeader } from "@/components/CardHeader";
 import { ToolboxItems } from "@/components/ToolboxItems";
-import { motion } from "framer-motion";
-import { use, useRef } from "react";
+import { GlobeDemo } from "@/components/GlobeDemo";
 
 const toolboxItems = [
-  {
-    title: 'JavaScript',
-    iconType: JavascriptIcon,
-  },
-  {
-    title: 'HTML5',
-    iconType: HTMLIcon,
-  },
-  {
-    title: 'CSS3',
-    iconType: CssIcon,
-  },
-  {
-    title: 'React',
-    iconType: ReactIcon,
-  },
-  {
-    title: 'Chrome',
-    iconType: ChromeIcon,
-  },
-  {
-    title: 'Github',
-    iconType: GithubIcon,
-  },
-  {
-    title: 'Tailwind',
-    iconType: tailwindIcon,
-  },
-  {
-    title: 'Nextjs',
-    iconType: nextIcon,
-  },
-];
-
-const hobbies = [
-  {
-    title: 'Painting',
-    emoji: '🎨',
-    left:"0%",
-    top:"5%",
-  },
-  {
-    title: 'Photography',
-    emoji: '📷',
-    left:"50%",
-    top:"5%",
-  },
-  {
-    title: 'Gaming',
-    emoji: '🎮',
-    left:"10%",
-    top:"35%",
-  },
-  {
-    title: 'Traveling',
-    emoji: '✈️',
-    left:"35%",
-    top:"40%",
-  },
-  {
-    title: 'Music',
-    emoji: '🎧',
-    left:"70%",
-    top:"45%",
-  },
-  {
-    title: 'Fitness',
-    emoji: '🏋️‍♂️',
-    left:"5%",
-    top:"65%",
-  },
-  {
-    title: 'Reading',
-    emoji: '📗',
-    left:"45%",
-    top:"70%",
-  },
+  { title: "JavaScript", iconType: JavascriptIcon },
+  { title: "HTML5", iconType: HTMLIcon },
+  { title: "CSS3", iconType: CssIcon },
+  { title: "React", iconType: ReactIcon },
+  { title: "Next.js", iconType: nextIcon },
+  { title: "Laravel", iconType: laravelIcon },
+  { title: "Tailwind", iconType: tailwindIcon },
+  { title: "Figma", iconType: figmaIcon },
+  { title: "MySQL", iconType: mySqlIcon },
+  { title: "MongoDB", iconType: mongodbIcon },
+  { title: "GitHub", iconType: GithubIcon },
+  { title: "Chrome DevTools", iconType: ChromeIcon },
 ];
 
 export const AboutSection = () => {
-  const constraintRef = useRef(null);
   return (
-    <div id="About" className="py-20 lg:py-28">
+    <div className="py-20" id="About">
       <div className="px-5 md:px-16">
         <SectionHeader
-          eyebrow="About Me"
-          title="A Glimpse Into My World"
-          description="Learn more about who I am, what I do, and what inspires me."
+          eyebrow="About Softovate"
+          title="Building Digital Excellence"
+          description="We architect robust digital systems that transform businesses through cutting-edge technology and innovative solutions."
         />
-        <div className="mt-20 flex flex-col gap-8">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-5 lg:grid-cols-3">
-          <Card className="h-[320px] md:col-span-2 lg:col-span-1 ">
-            <CardHeader
-              title="My Reads"
-              description="Explore the books shaping my perspective."
-            />
-            <div className="w-40 mx-auto mt-2 md:mt-0">
-              <Image src={bookImage} alt="Book cover" />
-            </div>
-          </Card>
-          
-          <Card className="h-[320px] md:col-span-3 lg:col-span-2">
+        <div className="mt-20 flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-1/2 flex flex-col gap-8">
+            <Card className="h-[400px]">
               <CardHeader
-                title="My Toolbox"
-                description="Explore the technologies and tools I use to craft exceptional digital experiences."
-                
+                title="Our Technology Stack"
+                description="The powerful tools we use to build enterprise-grade digital solutions"
               />
-              <ToolboxItems toolboxItems={toolboxItems}  itemsWrapperClassName="animate-move-left [animation-duration:30s]" />
-              <ToolboxItems toolboxItems={toolboxItems} className="mt-4" itemsWrapperClassName="animate-move-right [animation-duration:15s]  " />
+              <div className="mt-6">
+                <ToolboxItems
+                  toolboxItems={toolboxItems}
+                  itemsWrapperClassName="animate-move-left [animation-duration:30s]"
+                />
+                <ToolboxItems
+                  toolboxItems={toolboxItems}
+                  className="mt-4"
+                  itemsWrapperClassName="animate-move-right [animation-duration:15s]"
+                />
+              </div>
+            </Card>
 
-          </Card>
-          {/* <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:grid-cols-3"> */}
-          
-          <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
-            <div>
-              <CardHeader title="Beyond the Code" description="Explore my interests and hobbies beyond the digital realm." className="px-6 py-6" />
-            </div>
-            <div className="relative flex-1" ref={constraintRef}>
-              {hobbies.map((hobby) => (
-                <motion.div 
-                key={hobby.title} className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full py-1.5 absolute" style={{
-                  left: hobby.left,
-                  top: hobby.top,
-                }}
-                drag 
-                dragConstraints={constraintRef}
-                >
-                  <span className="font-medium text-gray-950">{hobby.title}</span>
-                  <span>{hobby.emoji}</span>
-                </motion.div>
-              ))}
-            </div>
-          </Card>
-          <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1">
-            <Image src={mapImage} alt="Map" className="h-full w-full object-cover object-left-top" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 border-2 border-gray-950/30">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-20 animate-ping [animation-duration:2s]"></div>
-            <Image src={smileMemo} alt="Smile memoji" className="size-20" />
-            </div>
-          </Card>
+            <Card className="h-[400px] flex flex-col">
+              <CardHeader
+                title="Global Digital Solutions"
+                description="We serve clients worldwide with our 24/7 development approach"
+              />
+              <div className="flex-1 relative">
+                <GlobeDemo />
+                <div className="absolute bottom-6 left-0 right-0 px-6">
+                  <div className="bg-gray-800/80 backdrop-blur-sm p-4 rounded-lg">
+                  </div>
+                </div>
+              </div>
+            </Card>
           </div>
-          {/* </div> */}
+
+          <div className="lg:w-1/2">
+            <div className="bg-gray-800/50 p-8 rounded-2xl backdrop-blur-sm border border-white/10 h-full">
+              <h2 className="text-2xl font-serif font-medium mb-6">
+                Who We Are
+              </h2>
+              <div className="space-y-4 text-white/80">
+                <p>
+                  Softovate is a premier digital solutions provider specializing in 
+                  custom web applications, enterprise software, and innovative 
+                  technology solutions. Founded with a vision to bridge the gap 
+                  between business needs and technological possibilities, we've 
+                  grown into a trusted partner for organizations worldwide.
+                </p>
+                <p>
+                  Our team comprises passionate developers, designers, and 
+                  strategists who combine technical expertise with creative 
+                  problem-solving. We don't just write code - we craft digital 
+                  experiences that drive measurable business results. With 
+                  headquarters serving as our innovation hub, we maintain a 
+                  global delivery model that ensures 24/7 productivity and 
+                  support.
+                </p>
+                <p>
+                  What sets Softovate apart is our commitment to understanding 
+                  each client's unique challenges before proposing solutions. 
+                  We believe technology should serve business objectives, not 
+                  the other way around. This philosophy has helped us deliver 
+                  successful projects across industries including finance, 
+                  healthcare, e-commerce, and education.
+                </p>
+                <p>
+                  Our expertise spans the full development lifecycle - from 
+                  initial concept and UX design to deployment and ongoing 
+                  optimization. We're particularly proud of our track record 
+                  in building scalable systems that grow with our clients' 
+                  businesses, ensuring long-term value from every engagement.
+                </p>
+                <p>
+                  At Softovate, we stay at the forefront of technology trends 
+                  while maintaining rigorous standards for security, performance, 
+                  and accessibility. Whether you need a customer-facing web 
+                  application, internal business tools, or complex system 
+                  integration, we have the skills and experience to deliver 
+                  exceptional results.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default AboutSection;

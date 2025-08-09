@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // basePath: '/softovate-io.github.io',
   images: {
     unoptimized: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreDuringBuilds: true
   },
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule) =>

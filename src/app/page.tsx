@@ -24,8 +24,8 @@ export default function Home() {
       <TapeSection />
       <Services />
       {/* <TestimonialsSection /> */}
-      {/* <AboutSection /> */}
-      <BentoGrid/>
+      <AboutSection />
+      {/* <BentoGrid/> */}
       <ContactSection />
       <Footer />
     </div>
